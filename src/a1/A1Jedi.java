@@ -47,24 +47,20 @@ public class A1Jedi {
 					firstNames[i] = scan.next();
 					lastNames[i] = scan.next();
 					totalItems[i] = scan.nextInt();
+					int[] checkCust = new int[itemCount];
 					// a nested for loop for each item to store the quantity and price of each item into an array
 					for (int k=0; k<totalItems[i]; k++) {
 						int[] itemQuant = new int[totalItems[i]];
 						itemQuant[k] = scan.nextInt();
 						String[] shoppingList = new String [totalItems[i]];
 						shoppingList[k] = scan.next();
-						boolean[] checkCust = new boolean[itemCount];
+					
 						// another nested for loop to check if a customer has bought a specific item
 						for (int m=0; m<itemNames.length; m++) {
-							int counter = 0;
 							if(itemNames[m].equals(shoppingList[k])) {
-								counter ++;
-							}
-							if (counter > 0) {
-								checkCust[m] = false; 
-							} else {
-								checkCust[m] = true;
-							}
+								checkCust[m] ++ ;
+							} 
+							
 						}
 						log(itemQuant[k], shoppingList[k], itemNames, itemCounter, custCounter, checkCust);
 					} 
@@ -79,10 +75,10 @@ public class A1Jedi {
 				}
 	}
 	
-	static void log(int singleItemQuant, String shoppingItem, String[] itemNames, int[] itemCounter, int[] custCounter, boolean[] checkCust) {
-		int total = 0;
+	static void log(int singleItemQuant, String shoppingItem, String[] itemNames, int[] itemCounter, int[] custCounter, int[] checkCust) {
+		
 		for (int i=0; i<itemNames.length; i++) {
-			if (itemNames[i].equals(shoppingItem) && checkCust[i] == false) {
+			if (itemNames[i].equals(shoppingItem) && checkCust[i] < 2) {
 				custCounter[i] ++;
 			}
 			if (itemNames[i].equals(shoppingItem)) {
