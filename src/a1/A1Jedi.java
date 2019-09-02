@@ -61,13 +61,12 @@ public class A1Jedi {
 								counter ++;
 							}
 							if (counter > 0) {
-								checkCust[m] = true; 
+								checkCust[m] = false; 
 							} else {
-								checkCust[m] = false;
+								checkCust[m] = true;
 							}
-							log(itemQuant[k], shoppingList[k], itemNames, itemCounter, custCounter, checkCust);
 						}
-					
+						log(itemQuant[k], shoppingList[k], itemNames, itemCounter, custCounter, checkCust);
 					} 
 				}	scan.close();
 				
@@ -80,13 +79,14 @@ public class A1Jedi {
 				}
 	}
 	
-	static void log(int itemQuant, String shoppingItem, String[] itemNames, int[] itemCounter, int[] custCounter, boolean[] checkCust) {
+	static void log(int singleItemQuant, String shoppingItem, String[] itemNames, int[] itemCounter, int[] custCounter, boolean[] checkCust) {
+		int total = 0;
 		for (int i=0; i<itemNames.length; i++) {
 			if (itemNames[i].equals(shoppingItem) && checkCust[i] == false) {
 				custCounter[i] ++;
 			}
 			if (itemNames[i].equals(shoppingItem)) {
-				itemCounter[i] = itemQuant;
+				itemCounter[i] += singleItemQuant;
 			}
 		}
 	}
